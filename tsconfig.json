@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "commonjs", // 目标语言的输出模块方式 -ts-node 使用
+    "target": "es6", // 语言版本
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist", // TS文件编译后会放入到此文件夹内
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    }
+  },
+  "include": ["src/**/*", "main.ts"]
+}

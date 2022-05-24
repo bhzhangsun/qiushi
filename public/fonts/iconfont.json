@@ -1,0 +1,44 @@
+{
+  "id": "3416954",
+  "name": "qiushi",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3500061",
+      "name": "没有",
+      "font_class": "notfound",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "2325952",
+      "name": "ios",
+      "font_class": "ios",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "7457527",
+      "name": "android",
+      "font_class": "android",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "11882842",
+      "name": "bg-pc",
+      "font_class": "pc",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "11474243",
+      "name": "copy",
+      "font_class": "copy",
+      "unicode": "e6f3",
+      "unicode_decimal": 59123
+    }
+  ]
+}

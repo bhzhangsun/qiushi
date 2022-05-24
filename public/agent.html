@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>秋石 Agent</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <script src="./js/agent.iife.js"></script>
+  </head>
+  <body>
+    <header><h1>秋石 Agent</h1></header>
+    <div id="description"></div>
+    <section id="funcset">
+      <!-- <template>
+      <div class="funcset-set">
+        <div class="funcset-setname">Console</div>
+        <div class="funcset-func">
+          <div class="funcset-funcbtn">console.log</div>
+          <div class="funcset-funcbtn">console.log</div>
+          <div class="funcset-funcbtn">console.log</div>
+        </div>
+      </div>
+      </template> -->
+    </section>
+    <script>
+      const agent = new Agent()
+      agent.register().then(() => {
+        document.getElementById('description').innerText = 'id: ' + agent.id
+      })
+
+      function errorFn() {
+        var runtimeFun = function () {
+          throw new Error('[crd]: test runtime error...')
+        }
+        runtimeFun()
+      }
+      var config = {
+        Console: {
+          'console.log': function () {
+            console.log('[crd]: test log...')
+          },
+          'console.error': function () {
+            console.error({ type: '[crd]: test log error...' })
+          },
+          'runtime error': function () {
+            errorFn()
+          },
+        },
+        Network: {
+          'new Image': function () {
+            var i = new Image()
+            i.src =
+              'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
+          },
+          script: function () {
+            $.ajax({
+              url: 'https://res.wx.qq.com/open/libs/weuijs/1.2.1/weui.min.js',
+              dataType: 'jsonp',
+            })
+          },
+          xhr: function () {
+            $.get('/crd/serverInfo')
+          },
+          fetch: function () {
+            fetch('/crd/serverInfo')
+          },
+        },
+        Application: {
+          'set localStorage': function () {
+            localStorage.setItem('crd_localStorage', 'hello world')
+          },
+          'delete localStorage': function () {
+            localStorage.removeItem('crd_localStorage')
+          },
+          'set cookies': function () {
+            document.cookie = 'crd_cookie=hello_world'
+          },
+          'delete cookies': function () {
+            document.cookie =
+              'crd_cookie=;expires=Thu, 01 Jan 1970 00:00:00 GMT;'
+          },
+        },
+      }
+
+      function renderer() {
+        const sets = Object.keys(config).map((key) => {
+          const set = config[key]
+          const funcs = Object.keys(set).map((name) => {
+            const el = document.createElement('div')
+            el.innerText = name
+            el.setAttribute('class', 'funcset-funcbtn')
+            el.addEventListener('click', set[name])
+            return el
+          })
+
+          // console.log('funcs:', funcs)
+          const setname = document.createElement('div')
+          setname.innerText = key
+          setname.setAttribute('class', 'funcset-setname')
+          const func = document.createElement('div')
+          func.setAttribute('class', 'funcset-func')
+          funcs.forEach((el) => func.appendChild(el))
+
+          const setEl = document.createElement('div')
+          setEl.setAttribute('class', 'funcset-set')
+          setEl.appendChild(setname)
+          setEl.appendChild(func)
+          return setEl
+        })
+        const container = document.getElementById('funcset')
+        container.innerHTML = ''
+        sets.forEach((el) => {
+          container.appendChild(el)
+        })
+      }
+      window.onload = renderer
+    </script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f2f6ff;
+        color: rgba(0, 0, 0, 0.75);
+        padding: 16px;
+      }
+
+      #funcset {
+        margin: 8px 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .funcset-set {
+        width: 200px;
+        padding: 16px;
+        border-radius: 5px;
+        background: #ffffff;
+        margin: 16px;
+      }
+
+      .funcset-setname {
+        font-size: 20px;
+        margin: 8px 0;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .funcset-func {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .funcset-funcbtn {
+        padding: 10px 5px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: #07c160;
+        color: #ffffff;
+        margin: 6px 0;
+      }
+
+      .funcset-funcbtn:active {
+        background-color: #076836;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "name": "qiushi",
+  "version": "1.0.0",
+  "description": "chrome remote debugger",
+  "main": "dist/main.js",
+  "scripts": {
+    "start:docker": "node ./build.js install && node dist/main.js",
+    "start": "node ./build.js install && node dist/main.js",
+    "dev": "nodemon --watch 'src/**/*' --watch 'public/*' -e ts,tsx --exec 'node ./build.js && ts-node' ./main.ts",
+    "debug": "nodemon --inspect --watch 'src/**/*' --watch 'public/*' -e html,ts,tsx --exec 'node ./build.js && node -r ts-node/register' ./main.ts",
+    "build:fe": "node ./build.js",
+    "build:prod": "tsc && node ./build.js",
+    "install": "node ./build.js install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhangsunbaohong@163.com",
+  "license": "ISC",
+  "dependencies": {
+    "@mnichangxin/chobitsu": "^0.1.0",
+    "chrome-devtools-frontend": "1.0.707746",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "0.0.16",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "ua-parser-js": "^1.0.2",
+    "ws": "^8.6.0"
+  },
+  "devDependencies": {
+    "@kd/eslint-config-vue": "0.0.2",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa-cors": "0.0.2",
+    "@types/koa-mount": "^4.0.1",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa-static": "^4.0.2",
+    "@types/ua-parser-js": "^0.7.36",
+    "@types/ws": "^8.5.3",
+    "glob": "^8.0.2",
+    "node-args": "^2.1.8",
+    "nodemon": "^2.0.15",
+    "rollup": "^2.72.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-copy": "^3.4.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}

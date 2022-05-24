@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>秋石 Monitor</title>
+    <link rel="stylesheet" href="./fonts/iconfont.css" />
+    <script src="./js/monitor.iife.js"></script>
+  </head>
+  <body>
+    <header><h1>秋石远程调试面板</h1></header>
+    <div id="root">
+      <section>
+        <ul class="tips">
+          <li class="tips-item">
+            <span class="tips-item-idx">1</span>
+            本调试工具将使用角色分为用户代理Agent，监控器Monitor, 中控面板Panel
+          </li>
+          <li class="tips-item">
+            <span class="tips-item-idx">2</span>
+            Agent被监控目标页面引入并加载，将用户操作进行上报,有服务端转发给监视器Monitor
+          </li>
+          <li class="tips-item">
+            <span class="tips-item-idx">3</span>
+            监视器Monitor将远程指令通过服务端发送给Agent
+          </li>
+          <li class="tips-item">
+            <span class="tips-item-idx">4</span> 用户代理Agent <a>demo</a> 和
+            <a>READEME</a>
+          </li>
+        </ul>
+      </section>
+      <section id="renderer" class="agents">
+        <!-- <template>
+          <div class="agent-card">
+            <a class="agent-title" href="${url}">
+              <strong>${title}</strong>&nbsp;<em>(id: ${id})</em></a
+            >
+            <a class="agent-link">
+              <i class="i iconfont icon-copy"></i>
+              <span class="agent-url">${url}</span></a
+            >
+            <div class="agent-info">
+              <i
+                class="i iconfont icon-android i-${type == 'android' ? 'enable' : 'disable'}"
+              ></i>
+              <i
+                class="i iconfont icon-ios i-${type == 'ios' ? 'enable' : 'disable'}"
+              ></i>
+              <i
+                class="i iconfont icon-pc i-${type == 'pc' ? 'enable' : 'disable'}"
+              ></i>
+              <i
+                class="i iconfont icon-notfound i-${type == 'unknown' ? 'enable' : 'disable'}"
+              ></i>
+            </div>
+          </div>
+        </template> -->
+      </section>
+    </div>
+    <script>
+      new Monitor().init().mount('#renderer')
+    </script>
+  </body>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f2f6ff;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    .tips {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65);
+      list-style: none;
+    }
+
+    .tips-item {
+      padding-bottom: 10px;
+    }
+
+    .tips-item-idx {
+      margin-right: 5px;
+      display: inline-block;
+      min-width: 20px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      color: #ffffff;
+      background-color: rgba(25, 104, 250, 0.6);
+    }
+    .agents {
+      padding: 30px 0;
+    }
+
+    .agent-card {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      border-radius: 5px;
+      background: #ffffff;
+      margin: 0 0 16px 0;
+    }
+
+    .agent-title {
+      padding: 4px 0;
+    }
+
+    .agent-link {
+      display: flex;
+      padding: 4px 0;
+      align-items: center;
+    }
+    .agent-url {
+      font-size: 14px;
+    }
+
+    .agent-info {
+      display: flex;
+      padding: 4px 0;
+      align-items: center;
+    }
+
+    .i {
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.7);
+      margin: 0 5px;
+    }
+
+    .i-enable {
+      color: rgba(25, 104, 250, 0.6);
+    }
+  </style>
+</html>
